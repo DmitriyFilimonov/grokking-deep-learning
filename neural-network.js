@@ -26,10 +26,10 @@ const elementWiseMulti = (n, vector) => {
   return vector.map((vectorComponent) => n * vectorComponent);
 }
 
-const multipleInputWeights = {
-  numberOfToes: [0.1, 0.1, -0.3],
-  winRate: [0.1, 0.2, 0],
-  sadness: [0, 1.3, 0.1]
+const hiddenWeightsObject = {
+  traumas: [0.1, 0.2, -0.1],
+  winRate: [-0.1, 0.1, 0.9],
+  sadness: [0.1, 0.4, 0.1]
 }
 
 const getWinningSadnessAndTraumaProbabilities = (input, _weights) => {
@@ -38,20 +38,27 @@ const getWinningSadnessAndTraumaProbabilities = (input, _weights) => {
   return prediction;
 }
 
-const prediction1 = getWinningSadnessAndTraumaProbabilities(0.65, multipleInputWeights.numberOfToes);
-const prediction2 = getWinningSadnessAndTraumaProbabilities(0.65, multipleInputWeights.winRate);
-const prediction3 = getWinningSadnessAndTraumaProbabilities(0.65, multipleInputWeights.sadness);
+const predictionWeightsObject = {
+  traumas: [0.3, 1.1, -0.3],
+  winRate: [0.1, 0.2, 0],
+  sadness: [0, 1.3, 0.1]
+} 
 
-const weightsMatrix = [multipleInputWeights.numberOfToes, multipleInputWeights.winRate, multipleInputWeights.sadness]
+const hiddenWeights = [hiddenWeightsObject.traumas, hiddenWeightsObject.winRate, hiddenWeightsObject.sadness];
+
+const predictionWeights = [predictionWeightsObject.traumas, predictionWeightsObject.winRate, predictionWeightsObject.sadness];
+
+const multipleLayersWeights = [hiddenWeights, predictionWeights];
 
 const matrixMulti = (vector, matrix) => {
-  return matrix.map(matrixItem => weighedSum(vector, matrixItem))
+  return matrix.map(matrixItem => weighedSum(vector, matrixItem));
 }
 
-const threeInputsThreeOutputs = (input, weights) => {
-  const prediction = matrixMulti(input, weights);
+const withHiddenLayer = (input, weights) => {
+  const hiddenPrediction = matrixMulti(input, weights[0]);
+  const prediction = matrixMulti(hiddenPrediction, weights[1]);
 
   return prediction;
 }
 
-console.log({ threeInputsThreeOutputs: threeInputsThreeOutputs(input, weightsMatrix) });
+console.log({ withHiddenLayer: withHiddenLayer(input, multipleLayersWeights) });
