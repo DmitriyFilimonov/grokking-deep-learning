@@ -4,9 +4,9 @@ const weighedSum = (inputs, _weights) => {
     return output;
 }
 
-let weights = [0.1, 0.2, 0];
+let weights = [[0.1, 0.2, 0]];
 
-const neuralNetwork = (input, _weights) => {
+const getWinningProbability = (input, _weights) => {
     const prediction = weighedSum(input, _weights);
 
     return prediction;
@@ -18,6 +18,22 @@ const fansCountBillions = [1.2, 1.3, 0.5, 1.0];
 
 const input = [numberOfToes[0], winRate[0], fansCountBillions[0]];
 
-const prediction = neuralNetwork(input, weights);
+const winningProbability = getWinningProbability(input, weights[0]);
 
-console.log(prediction);
+// ------------------------------------------------------------------------
+
+const elementWiseMulti = (n, vector) => {
+    return vector.map((vectorComponent) => n * vectorComponent);
+}
+
+weights.push([0.3, 0.2, 0.9]);
+
+const getWinningSadnessAndTraumaProbabilities = (input, _weights) => {
+    prediction = elementWiseMulti(input, _weights);
+
+    return prediction;
+}
+
+const prediction2 =  getWinningSadnessAndTraumaProbabilities(0.65, weights[1]);
+
+console.log(prediction2);
