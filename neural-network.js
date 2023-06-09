@@ -1,5 +1,5 @@
 const weighedSum = (inputs, _weights) => {
-  const output = inputs.reduce((acc, input, index) => acc += input * _weights[index], 0);
+  const output = inputs.reduce((_weighedSum, input, index) => _weighedSum += input * _weights[index], 0);
 
   return output;
 }
@@ -16,7 +16,7 @@ const fansCountBillions = [1.2, 1.3, 0.5, 1.0];
 
 // ----------------------- neural network --------------------------------
 
-// ----------------------- input          --------------------------------
+// ----------------------- input -----------------------------------------
 const input = [numberOfToes[0], winRate[0], fansCountBillions[0]];
 
 // ----------------------- hidden layer   --------------------------------
