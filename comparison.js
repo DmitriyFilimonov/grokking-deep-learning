@@ -5,14 +5,15 @@ const neuralNetwork = (input, weight) => {
 }
 
 let weight = 100;
-const goal_target = 41.365;
-const input = 0.5;
+const goal_target = 165.45;
+const input = 2;
+const alpha = 0.1;
 
-for (let i = 0; i < 30; i++) {
+for (let i = 0; i < 400; i++) {
     const prediction = neuralNetwork(input, weight);
     const pureError = prediction - goal_target
     const errorDirectionAndAmount = pureError * input;
-    weight -= errorDirectionAndAmount
+    weight -= errorDirectionAndAmount * alpha
 
     console.log(`Prediction: ${prediction}. Pure error: ${pureError} Weight: ${weight}.`);
 }
