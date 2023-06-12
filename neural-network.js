@@ -1,12 +1,4 @@
-const weighedSum = (inputs, _weights) => {
-  const output = inputs.reduce((_weighedSum, input, index) => _weighedSum += input * _weights[index], 0);
-
-  return output;
-}
-
-const matrixMulti = (vector, matrix) => {
-  return matrix.map(matrixItem => weighedSum(vector, matrixItem));
-}
+const { matrixMulti } = require('./matrix-multi');
 
 // ---------------------- data set ----------------------------------------
 
